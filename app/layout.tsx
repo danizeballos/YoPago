@@ -23,6 +23,11 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "YoPago - Modern Payment Solutions",
   description: "Advanced payment processing for modern businesses.",
+  icons: {
+    icon: "/logos/yP_icon.png",
+    shortcut: "/logos/yP_icon.png",
+    apple: "/logos/yP_icon.png",
+  },
 };
 
 export default function RootLayout({
