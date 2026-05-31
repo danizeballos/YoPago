@@ -1,26 +1,387 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* MODO LIGHT (DEFAULT) */
+  --background: #FFFFFF;
+  --foreground: #2A2A2A;
+
+  --card: #FFFFFF;
+  --card-foreground: #2A2A2A;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #2A2A2A;
+
+  --primary: #fb802b;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #5fd6d6;
+  --secondary-foreground: #121212;
+
+  --muted: #F8F9FA;
+  --muted-foreground: #4A5568;
+
+  --accent: #5fd6d6;
+  /* Verde Agua Claro for hover states */
+  --accent-foreground: #121212;
+
+  --destructive: #bc1d08;
+  --destructive-foreground: #FFFFFF;
+
+  --border: #E2E8F0;
+  --input: #F7FAFC;
+  --ring: #fb802b;
+
+  --chart-1: #fb802b;
+  --chart-2: #5fd6d6;
+  --chart-3: #068e95;
+  --chart-4: #4e2747;
+  --chart-5: #e52356;
+
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #2A2A2A;
+  --sidebar-primary: #fb802b;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #5fd6d6;
+  --sidebar-accent-foreground: #121212;
+  --sidebar-border: #E2E8F0;
+  --sidebar-ring: #fb802b;
+
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+
+  --font-mono: var(--font-mono), monospace;
+
+  --radius: 1.3rem;
+
+  --shadow-x: 0px;
+  --shadow-y: 2px;
+  --shadow-blur: 0px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0;
+  --shadow-color: rgba(29, 161, 242, 0.15);
+  --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00);
+  --shadow-xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00);
+  --shadow-sm: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
+  --shadow: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
+  --shadow-md: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 2px 4px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
+  --shadow-lg: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 4px 6px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
+  --shadow-xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 8px 10px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
+  --shadow-2xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00);
+
+  --tracking-normal: -0.025em;
+  --spacing: 0.25rem;
+  --shadow-offset-x: 0px;
+  --shadow-offset-y: 2px;
+  --letter-spacing: -0.025em;
+}
+
+.dark {
+  /* MODO DARK */
+  --background: #121212;
+  --foreground: #E2E8F0;
+
+  --card: #1E1E1E;
+  --card-foreground: #E2E8F0;
+
+  --popover: #1E1E1E;
+  --popover-foreground: #E2E8F0;
+
+  --primary: #fb802b;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #068e95;
+  --secondary-foreground: #FFFFFF;
+
+  --muted: #2D2D2D;
+  --muted-foreground: #A0AEC0;
+
+  --accent: #5fd6d6;
+  /* Better visibility in dark for hovers */
+  --accent-foreground: #121212;
+
+  --destructive: #bc1d08;
+  --destructive-foreground: #FFFFFF;
+
+  --border: #2D3748;
+  --input: #2A2A2A;
+  --ring: #fb802b;
+
+  --chart-1: #fb802b;
+  --chart-2: #5fd6d6;
+  --chart-3: #068e95;
+  --chart-4: #4e2747;
+  --chart-5: #e52356;
+
+  --sidebar: #1E1E1E;
+  --sidebar-foreground: #E2E8F0;
+  --sidebar-primary: #fb802b;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #068e95;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #2D3748;
+  --sidebar-ring: #fb802b;
+  --shadow-offset-x: 0px;
+  --shadow-offset-y: 2px;
+  --spacing: 0.25rem;
 }
 
 @theme inline {
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-shadow-color: var(--shadow-color);
+
+  /* Fonts */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+
+  /* Radius */
+  --radius: var(--radius);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Shadows */
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+
+  /* Letter Spacing / Tracking */
+  --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
+  --tracking-tight: calc(var(--tracking-normal) - 0.025em);
+  --tracking-normal: var(--tracking-normal);
+  --tracking-wide: calc(var(--tracking-normal) + 0.025em);
+  --tracking-wider: calc(var(--tracking-normal) + 0.05em);
+  --tracking-widest: calc(var(--tracking-normal) + 0.1em);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    letter-spacing: -0.01em;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-[-0.03em] leading-tight;
+  }
+
+  h1 {
+    @apply text-3xl sm:text-4xl md:text-6xl lg:text-7xl;
+  }
+
+  p {
+    @apply leading-relaxed opacity-90 font-medium;
+  }
+
+
+
+  /* Ambient background for Light Mode - Subtle Grids and Blobs */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    /* SUBTLE METALLIC WHITE BACKGROUND */
+    background: radial-gradient(125% 125% at 50% 10%, #FFFFFF 50%, #F1F5F9 100%);
+    /* OLD DOT PATTERN
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.04) 1px, transparent 0);
+    background-size: 32px 32px;
+    */
+    pointer-events: none;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    top: -10%;
+    right: -10%;
+    width: 60%;
+    height: 60%;
+    z-index: -9;
+    background: transparent;
+    /* Hide old blob in light mode */
+    /* background: radial-gradient(circle at center, rgba(95, 214, 214, 0.08) 0%, transparent 70%); */
+    filter: blur(80px);
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+
+  .dark body::before {
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.02) 1px, transparent 0);
+  }
+
+  .dark body::after {
+    opacity: 0.2;
+    background: radial-gradient(circle at center, rgba(251, 128, 43, 0.05) 0%, transparent 70%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.btn-animated {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  border-radius: 10px;
+  overflow: visible;
+  background-color: #3a3a3a;
+}
+
+.btn-animated::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 106%;
+  height: 120%;
+  z-index: -1;
+  border-radius: inherit;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+}
+
+.btn-animated:hover::before {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-animated-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100.5%;
+  height: 102%;
+  overflow: hidden;
+  border-radius: inherit;
+  z-index: -20;
+  filter: blur(6px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.btn-animated-gradient {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%;
+  aspect-ratio: 1 / 1;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  background-image: linear-gradient(90deg,
+      #fb802b 0%,
+      #fb802b 45%,
+      #a855f7 60%,
+      #5fd6d6 75%,
+      #a855f7 85%,
+      #fb802b 100%);
+  filter: blur(8px);
+  animation: rotate-btn 3s linear infinite;
+}
+
+.btn-animated-label {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  border-radius: 8px;
+  color: white;
+  background-color: rgb(43, 43, 43);
+  background-image: linear-gradient(180deg, rgb(43, 43, 43) 0%, rgb(68, 68, 68) 100%);
+  transition: transform 0.3s ease;
+}
+
+.btn-animated:hover .btn-animated-container {
+  /* No scale — keeps the gradient border at full size */
+  transform: translate(-50%, -50%);
+  filter: blur(5px);
+  opacity: 1;
+}
+
+.btn-animated:hover .btn-animated-gradient {
+  /* Subtle reduction (8px → 6px) instead of 4px — the glow intensifies
+     slightly without making the dark center look smaller */
+  filter: blur(6px);
+}
+
+.btn-animated:hover .btn-animated-label {
+  transform: scale(1);
+}
+
+@keyframes rotate-btn {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
